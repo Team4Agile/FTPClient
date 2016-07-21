@@ -25,8 +25,8 @@ public class FTPClientClass {
 	    System.out.println("hi");
         FTPClient ftpClient = new FTPClient();
         try {
-            ftpClient.connect("10.200.76.56", 80);
-            boolean login = ftpClient.login("administrator", "wingftp");
+            ftpClient.connect("demo.wftpserver.com", 21);
+            boolean login = ftpClient.login("demo-user", "demo-user");
             String[] reply = ftpClient.getReplyStrings();
             System.out.println(reply);
 
