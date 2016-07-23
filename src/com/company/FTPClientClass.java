@@ -10,11 +10,9 @@ import java.net.ConnectException;
 
 
 import com.sun.tools.doclets.internal.toolkit.util.SourceToHTMLConverter;
-import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPReply;
+import org.apache.commons.net.ftp.*;
 //import org.apache.commons.net.ftp.FTPClientConfig;
 import org.apache.commons.net.PrintCommandListener;
-import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPReply;
 
 
@@ -22,18 +20,27 @@ import org.apache.commons.net.ftp.FTPReply;
 public class FTPClientClass {
 
     public static void main(String[] args) {
-	    System.out.println("hi");
+	    System.out.println("Before connection");
         FTPClient ftpClient = new FTPClient();
         try {
             ftpClient.connect("demo.wftpserver.com", 21);
             boolean login = ftpClient.login("demo-user", "demo-user");
             String[] reply = ftpClient.getReplyStrings();
             System.out.println(reply);
-
-
-            System.out.println("login is :" + login);
+            System.out.println("Is the connection a success ? :" + login);
             //ftpClient.disconnect();
-            System.out.println("yes");
+            System.out.println("After connecting to server");
+
+            //List all the files in the server
+            FTPFile[] files = ftpClient.listFiles();
+            for (FTPFile file : files)
+            {
+                System.out.println(file.getName());
+            }
+
+
+
+
         }
         catch(ConnectException ex){
             System.out.println("conn ex " + ex);
