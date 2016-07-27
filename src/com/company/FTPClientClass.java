@@ -42,6 +42,7 @@ public class FTPClientClass {
                 System.out.println();
             }
             //Listing directories in Remote Server
+
             FTPFile[] directories = ftpClient.listDirectories();
             for (FTPFile directory : directories)
             {
@@ -78,7 +79,27 @@ public class FTPClientClass {
 
 
 
+            // To delete a file  from remote server
+            String fileToDelete = "test.txt"; // This should change according to your file structure
+            boolean isDeleted = ftpClient.deleteFile(fileToDelete);
+            if (isDeleted) {
+                System.out.println("The file was deleted successfully.");
+            } else {
+                System.out.println("Could not delete the  file, it may not exist.");
+            }
 
+            // To upload a single file to remote server from local
+            File firstLocalFile = new File("/Users/revathy/Desktop/ClientFolder/UploadedFile.txt");
+            // Change the path above according to your file directory and also put a file down
+            String firstRemoteFile = "UploadedFile.txt";
+            InputStream inputStream = new FileInputStream(firstLocalFile);
+
+            System.out.println("Start uploading first file");
+            boolean done = ftpClient.storeFile(firstRemoteFile, inputStream);
+            inputStream.close();
+            if (done) {
+                System.out.println("The first file is uploaded successfully.");
+            }
 
 
 
