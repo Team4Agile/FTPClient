@@ -28,16 +28,13 @@ public class FTPClientClass {
     /* Username and password is hardcoded , should have a method to create/ delete account
     and allow multiple user login */
     public FTPClientClass() {
-
         this.localPath = "/Users/revathy/Desktop/ClientFolder/java-ebook.pdf";
         this.userName = "demo-user";
         this.Password = "demo-user";
-
     }
 
     /* Help needed to add Command Line Interface */
     public static void main(String[] args) {
-
         FTPClientClass ftpObj = new FTPClientClass();
         try{
             ftpObj.getConnection();
@@ -50,27 +47,15 @@ public class FTPClientClass {
             ftpObj.uploadSingle();
             ftpObj.deleteFileRemote();
 
-        }
-
-        catch(ConnectException ex)
-
-        {
+        } catch(ConnectException ex) {
             System.out.println("conn ex " + ex);
-        }
-
-        catch(IOException ex)
-
-        {
+        } catch(IOException ex) {
             System.out.println("IO Exception");
             ex.printStackTrace();
-
         }
-
     }
 
-
     //Get connection info from User
-
     void getConnection()throws ConnectException, SocketException, IOException {
         FTPClient ftpClient = new FTPClient();
         Scanner scanner = new Scanner(System.in);
@@ -82,19 +67,12 @@ public class FTPClientClass {
         final Integer port;
         this.port= scanner.nextInt();
         System.out.println(this.port);
-
-
-
-        //
-        //boolean login = ftpClient.login(userName, Password);
-
     }
 
     //Save connection info
     void saveConnection() throws IOException {
 
     }
-
     //To Login user to the Remote Server
     private void loginUser(String userName, String Password) throws IOException, ConnectException {
         ftpClient.connect(host,port);
@@ -109,11 +87,8 @@ public class FTPClientClass {
 
     //Listing files in Remote Server
     private void listFilesRemote() throws IOException {
-
         FTPFile[] files = ftpClient.listFiles();
-        for (FTPFile file : files)
-
-        {
+        for (FTPFile file : files) {
             System.out.println("**Listing Files ON SERVER**");
             System.out.println(file.getName());
             System.out.println();
@@ -123,10 +98,7 @@ public class FTPClientClass {
     //Listing directories in Remote Server
     private void listDirectoriesRemote() throws IOException {
         FTPFile[] directories = ftpClient.listDirectories();
-
-        for ( FTPFile directory : directories)
-
-        {
+        for ( FTPFile directory : directories) {
             System.out.println("**Listing Directories ON SERVER**");
             System.out.println(directory.getName());
             System.out.println();
@@ -136,9 +108,7 @@ public class FTPClientClass {
     //Listing files in Local Machine
     private void listFilesLocal() throws IOException {
         FTPFile[] Lfiles = ftpClient.listFiles();
-        for ( FTPFile file : Lfiles)
-
-        {
+        for ( FTPFile file : Lfiles) {
             System.out.println("**Listing Files ON CLIENT **");
             System.out.println(file.getName());
             System.out.println();
@@ -148,10 +118,7 @@ public class FTPClientClass {
     //Listing directories in Local Server
     private void listDirectoriesLocal() throws IOException {
         FTPFile[] Ldirectories = ftpClient.listDirectories();
-
-        for (FTPFile directory : Ldirectories)
-
-        {
+        for (FTPFile directory : Ldirectories){
             System.out.println("**Listing Directories ON CLIENT**");
             System.out.println(directory.getName());
             System.out.println();
@@ -160,7 +127,6 @@ public class FTPClientClass {
 
     //Download single file from server
     private void downloadSingle() throws IOException {
-
         FileOutputStream fos = new FileOutputStream(localPath);
         ftpClient.retrieveFile("java-ebook.pdf", fos);
         fos.close();
@@ -173,15 +139,10 @@ public class FTPClientClass {
     private void deleteFileRemote() throws IOException{
         String fileToDelete = "test.txt"; // This should change according to your file structure
         boolean isDeleted = ftpClient.deleteFile(fileToDelete);
-        if(isDeleted)
-
-        {
+        if(isDeleted) {
             System.out.println("The file was deleted successfully.");
         }
-
-        else
-
-        {
+        else {
             System.out.println("Could not delete the  file, it may not exist.");
         }
     }
@@ -192,18 +153,14 @@ public class FTPClientClass {
         // Change the path above according to your file directory and also put a file down
         String firstRemoteFile = "UploadedFile.txt";
         InputStream inputStream = new FileInputStream(firstLocalFile);
-
         System.out.println("Start uploading first file");
         boolean done = ftpClient.storeFile(firstRemoteFile, inputStream);
         inputStream.close();
-        if (done)
-
-        {
+        if (done) {
             System.out.println("The first file is uploaded successfully.");
         }
     }
-
-
+    
 }
 
 
