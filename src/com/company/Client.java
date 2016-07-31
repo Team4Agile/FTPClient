@@ -40,6 +40,7 @@ public class Client {
 	
 	public void Success() throws IOException {
 		FTPClientClass operation = new FTPClientClass();
+		//TODO: this is a remote server implementation. If it does not work call the local server
 		operation.connectServer();
 		System.out.println("Welcome! Please select any option from the following menu");
 		int quit = 0;

@@ -19,7 +19,9 @@ import org.apache.commons.net.ftp.FTPReply;
 
 
 public class FTPClientClass {
-	
+//    this.localPath = "/Users/revathy/Desktop/ClientFolder/java-ebook.pdf";
+//    this.userName = "demo-user";
+//    this.Password = "demo-user";
     private static String localPath;
     private static String userName;
     private static String Password;
