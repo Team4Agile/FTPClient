@@ -137,5 +137,5 @@ public class FTPClientClass {
             System.out.println("The first file is uploaded successfully.");
         }
     }
-    
+
 }
